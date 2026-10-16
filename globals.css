@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-surface-page text-text-primary font-sans;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { @apply bg-surface-border rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-text-muted; }
+}
+
+@layer components {
+  /* Status badge variants */
+  .badge-normal {
+    @apply inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full
+           bg-green-50 text-brand-green border border-green-100;
+  }
+  .badge-warning {
+    @apply inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full
+           bg-amber-50 text-brand-amber border border-amber-100;
+  }
+  .badge-overload {
+    @apply inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full
+           bg-red-50 text-brand-red border border-red-100;
+  }
+  .badge-demo {
+    @apply inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full
+           bg-blue-50 text-brand-blue border border-blue-100;
+  }
+
+  /* Card */
+  .card {
+    @apply bg-surface-card rounded-card shadow-card border border-surface-border;
+  }
+
+  /* Sidebar nav item */
+  .nav-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium
+           text-white/60 hover:text-white hover:bg-white/10 transition-all duration-150 cursor-pointer;
+  }
+  .nav-item-active {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium
+           text-white bg-brand-blue shadow-sm cursor-pointer;
+  }
+
+  /* Primary button */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-btn
+           bg-brand-blue text-white text-sm font-semibold
+           hover:bg-brand-blueMid active:scale-95 transition-all duration-150 shadow-sm;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-btn
+           bg-white text-text-primary text-sm font-medium border border-surface-border
+           hover:bg-surface-muted active:scale-95 transition-all duration-150 shadow-sm;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-3 py-2 rounded-btn
+           text-text-secondary text-sm font-medium
+           hover:bg-surface-muted hover:text-text-primary transition-all duration-150;
+  }
+
+  /* Form input */
+  .input {
+    @apply w-full px-3.5 py-2.5 rounded-btn border border-surface-border bg-white
+           text-sm text-text-primary placeholder:text-text-muted
+           focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue
+           transition-all duration-150;
+  }
+
+  /* Data label (DEMO DATA / LIVE / CACHED) */
+  .data-label {
+    @apply flex items-center gap-1.5 text-xs font-semibold tracking-wide uppercase;
+  }
+
+  /* Pulse dot for live indicator */
+  .live-dot {
+    @apply relative flex h-2 w-2;
+  }
+  .live-dot::before {
+    content: '';
+    @apply absolute inline-flex h-full w-full rounded-full bg-brand-green opacity-75 animate-ping;
+  }
+  .live-dot::after {
+    content: '';
+    @apply relative inline-flex rounded-full h-2 w-2 bg-brand-green;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+}
